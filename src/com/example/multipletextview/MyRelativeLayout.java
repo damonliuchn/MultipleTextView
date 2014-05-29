@@ -97,6 +97,7 @@ public class MyRelativeLayout extends RelativeLayout{
 		//RelativeLayout rl=(RelativeLayout)findViewById(R.id.main_rl);
 		int x=0;
 		int y=0;
+		int line=0;
 		for (int i = 0; i < dataList.size(); i++) {
 			TextView tv=new TextView(context);
 			tv.setText(dataList.get(i));
@@ -106,7 +107,7 @@ public class MyRelativeLayout extends RelativeLayout{
 			
 			tv.setTextColor(textColor);
 			tv.setPadding(10, 10, 10, 10);
-			tv.setTag(i);
+			tv.setTag(i);//标记position
 			tv.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
@@ -125,17 +126,23 @@ public class MyRelativeLayout extends RelativeLayout{
 			
 			
 			RelativeLayout.LayoutParams lp=new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-			if (x+tvw+wordMargin>layout_width) {
+			if (x+tvw>layout_width) {
 				x=0;
 				y=y+tvh+lineMargin;
-				//这里是换行，此时把上一行末尾的TextView 拉伸铺满父控件
 				
+				//这里是换行，此时把上一行的TextView 拉伸铺满父控件
+				//line++;
 			}
 			lp.leftMargin=x;
             lp.topMargin=y;
             x=x+tvw+wordMargin;
 			tv.setLayoutParams(lp);
-
+			
+			
+//			tv.setTag(1, line);
+//			if (i==dataList.size()-1) {//这里说明是最后一块了，把最后一行 做拉伸处理
+//				
+//			}
 			addView(tv);
 
 			Log.e("aa", "addwan"+tv.getWidth()+"_"+tv.getMeasuredWidth());
