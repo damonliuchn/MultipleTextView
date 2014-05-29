@@ -9,7 +9,7 @@
         android:id="@+id/main_rl"
         android:layout_width="match_parent"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginRight="1dp"
     	android:layout_height="wrap_content"
     	my:textSize="12sp"
     	my:textWordMargin="1dp"

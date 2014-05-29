@@ -128,10 +128,8 @@ public class MyRelativeLayout extends RelativeLayout {
 				}
 			});
 
-			int w = View.MeasureSpec.makeMeasureSpec(0,
-					View.MeasureSpec.UNSPECIFIED);
-			int h = View.MeasureSpec.makeMeasureSpec(0,
-					View.MeasureSpec.UNSPECIFIED);
+			int w = View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED);
+			int h = View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED);
 			tv.measure(w, h);
 			int tvh = tv.getMeasuredHeight();
 			int tvw = getMeasuredWidth(tv);
@@ -162,8 +160,7 @@ public class MyRelativeLayout extends RelativeLayout {
 			int len = lineMap.get(i).size();
 			TextView tView = lineMap.get(i).get(len - 1);
 
-			RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) tView
-					.getLayoutParams();
+			RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) tView.getLayoutParams();
 			int right = lp.leftMargin + getMeasuredWidth(tView);
 			int emptyWidth = layout_width - right;
 			int padding = emptyWidth / (len * 2);
@@ -172,18 +169,15 @@ public class MyRelativeLayout extends RelativeLayout {
 			for (int j = 0; j < lineMap.get(i).size(); j++) {
 				TextView tView2 = lineMap.get(i).get(j);
 
-				RelativeLayout.LayoutParams lp2 = (RelativeLayout.LayoutParams) tView2
-						.getLayoutParams();
+				RelativeLayout.LayoutParams lp2 = (RelativeLayout.LayoutParams) tView2.getLayoutParams();
 				lp2.leftMargin = lp2.leftMargin + leftOffset;
 				leftOffset = (j + 1) * 2 * padding;
-				tView2.setPadding(tView2.getPaddingLeft() + padding,
-						tView2.getPaddingTop(), tView2.getPaddingRight()
-								+ padding, tView2.getPaddingBottom());
-				// Log.e("aa", "leftmargin"+lp2.leftMargin);
-				// Log.e("aa", "Padding"+tView2.getPaddingLeft()+"__"+
-				// tView2.getPaddingTop()+"__"+ tView2.getPaddingRight()+"__"+
-				// tView2.getPaddingBottom());
-				// Log.e("aa", "width"+tView2.getMeasuredWidth());
+				tView2.setPadding(
+						tView2.getPaddingLeft() + padding,
+						tView2.getPaddingTop(), 
+						tView2.getPaddingRight()+ padding, 
+						tView2.getPaddingBottom());
+				
 				addView(tView2);
 			}
 		}
