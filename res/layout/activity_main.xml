@@ -12,10 +12,14 @@
         android:layout_marginRight="10dp"
     	android:layout_height="wrap_content"
     	my:textSize="12sp"
-    	my:textWordMargin="10dp"
+    	my:textWordMargin="1dp"
     	my:textLineMargin="10dp"
     	my:textColor="#ff0000"
     	my:textBackground="@drawable/testd"
+    	my:textPaddingLeft="10dp"
+    	my:textPaddingRight="10dp"
+    	my:textPaddingTop="10dp"
+    	my:textPaddingBottom="10dp"
     	/>
     <!-- my:textBackground="@color/testc" 也可以 -->
 </FrameLayout>

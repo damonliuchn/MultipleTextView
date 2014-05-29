@@ -22,6 +22,11 @@
         <attr name="textWordMargin"  format="dimension"/>
         <attr name="textLineMargin"  format="dimension"/>
         <attr name="textBackground" format="integer" />
+        
+        <attr name="textPaddingLeft"  format="dimension"/>
+        <attr name="textPaddingRight"  format="dimension"/>
+        <attr name="textPaddingTop"  format="dimension"/>
+        <attr name="textPaddingBottom"  format="dimension"/>
     </declare-styleable>
 
 </resources>

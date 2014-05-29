@@ -31,9 +31,28 @@ public class MainActivity extends ActionBarActivity implements OnMultipleTVItemC
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		
+		List<String> dataList = new ArrayList<String>();
+		dataList.add("Mason Liu");
+		dataList.add("天盟");
+		dataList.add("天盟天盟天盟天盟");
+		dataList.add("Mason Mason Mason");
+
+		dataList.add("Mason Liu");
+		dataList.add("天盟");
+		dataList.add("天盟天盟天盟");
+		dataList.add("Mason Mason");
+
+		dataList.add("Mason");
+		dataList.add("天");
+		dataList.add("天");
+		dataList.add("Ma");
+		
+		
 		MyRelativeLayout rl=(MyRelativeLayout)findViewById(R.id.main_rl);
 		rl.setOnMultipleTVItemClickListener(this);
-
+		rl.setTextViews(dataList);
+		
 	}
 
 	@Override
