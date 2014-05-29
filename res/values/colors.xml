@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <drawable name="testd">#00ff00</drawable><!-- 分割线 -->
+    <color name="testc">#BDBAB5</color>
+</resources>
