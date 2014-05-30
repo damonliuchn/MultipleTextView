@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     >
     <com.dd544.bu.MultipleTextView
-        xmlns:my="http://schemas.android.com/apk/res/com.dd544.multipletextview"
+        xmlns:my="http://schemas.android.com/apk/res-auto"
         android:id="@+id/main_rl"
         android:layout_width="match_parent"
         android:layout_marginLeft="10dp"
