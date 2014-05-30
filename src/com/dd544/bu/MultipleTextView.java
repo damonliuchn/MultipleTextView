@@ -48,7 +48,8 @@ public class MultipleTextView extends RelativeLayout {
 		TypedArray array = context.obtainStyledAttributes(attrs,
 				R.styleable.MyView);
 		textColor = array.getColor(R.styleable.MyView_textColor, 0XFF00FF00); // 提供默认值，放置未指定
-		textSize = array.getDimension(R.styleable.MyView_textSize, 14);
+		textSize = array.getDimension(R.styleable.MyView_textSize, 24);
+		textSize=px2sp(context,textSize);
 		wordMargin = array.getDimensionPixelSize(R.styleable.MyView_textWordMargin, 0);
 		lineMargin = array.getDimensionPixelSize(R.styleable.MyView_textLineMargin, 0);
 		textBackground = array.getDrawable(R.styleable.MyView_textBackground);
@@ -80,6 +81,8 @@ public class MultipleTextView extends RelativeLayout {
 		int marginLeft = ta.getDimensionPixelSize(5, 0);
 		layout_width = layout_width - marginRight - marginLeft;
 
+		Log.e("aa", "ddd_"+textSize);
+		
 		ta.recycle();
 
 	}
@@ -195,7 +198,10 @@ public class MultipleTextView extends RelativeLayout {
 		//return v.getMeasuredWidth() + v.getPaddingLeft() + v.getPaddingRight();
 		return v.getMeasuredWidth() ;
 	}
-
+	public static int px2sp(Context context, float pxValue) {  
+        final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;  
+        return (int) (pxValue / fontScale + 0.5f);  
+    } 
 	interface OnMultipleTVItemClickListener {
 		public void onMultipleTVItemClick(View view, int position);
 	}
