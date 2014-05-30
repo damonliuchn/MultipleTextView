@@ -1,10 +1,10 @@
-package com.example.multipletextview;
+package com.dd544.bu;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.multipetextview.R;
-import com.example.multipletextview.MyRelativeLayout.OnMultipleTVItemClickListener;
+import com.dd544.bu.MultipleTextView.OnMultipleTVItemClickListener;
+import com.dd544.multipletextview.R;
 
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -33,8 +33,10 @@ public class MainActivity extends ActionBarActivity implements OnMultipleTVItemC
 
 		
 		List<String> dataList = new ArrayList<String>();
+		
 		dataList.add("Mason Liu");
-		dataList.add("天盟");
+		dataList.add("Mason Liu");
+		
 		dataList.add("天盟天盟天盟天盟");
 		dataList.add("Mason Mason Mason");
 
@@ -49,7 +51,7 @@ public class MainActivity extends ActionBarActivity implements OnMultipleTVItemC
 		dataList.add("Ma");
 		
 		
-		MyRelativeLayout rl=(MyRelativeLayout)findViewById(R.id.main_rl);
+		MultipleTextView rl=(MultipleTextView)findViewById(R.id.main_rl);
 		rl.setOnMultipleTVItemClickListener(this);
 		rl.setTextViews(dataList);
 		

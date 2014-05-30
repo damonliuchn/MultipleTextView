@@ -1,11 +1,11 @@
-package com.example.multipletextview;
+package com.dd544.bu;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.example.multipetextview.R;
+import com.dd544.multipletextview.R;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -23,7 +23,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.RelativeLayout.LayoutParams;
 
-public class MyRelativeLayout extends RelativeLayout {
+public class MultipleTextView extends RelativeLayout {
 
 	private Context context;
 	private float textSize;
@@ -40,7 +40,7 @@ public class MyRelativeLayout extends RelativeLayout {
 
 	private OnMultipleTVItemClickListener listener;
 
-	public MyRelativeLayout(Context context, AttributeSet attrs) {
+	public MultipleTextView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		// TODO Auto-generated constructor stub
 		this.context = context;
@@ -62,7 +62,7 @@ public class MyRelativeLayout extends RelativeLayout {
 				android.R.attr.background, // 1
 				android.R.attr.layout_width, // 2
 				android.R.attr.layout_height, // 3
-				android.R.attr.layout_marginRight, // 4
+				android.R.attr.layout_marginLeft, // 4
 													// 这个地方必须放到android.R.attr.layout_width的下边
 													// 不知道为什么
 				android.R.attr.layout_marginRight // 5
@@ -79,6 +79,7 @@ public class MyRelativeLayout extends RelativeLayout {
 		int marginRight = ta.getDimensionPixelSize(4, 0);
 		int marginLeft = ta.getDimensionPixelSize(5, 0);
 		layout_width = layout_width - marginRight - marginLeft;
+
 		ta.recycle();
 
 	}
@@ -104,7 +105,6 @@ public class MyRelativeLayout extends RelativeLayout {
 		List<TextView> lineList = new ArrayList<TextView>();
 		lineMap.put(0, lineList);
 
-		// RelativeLayout rl=(RelativeLayout)findViewById(R.id.main_rl);
 		int x = 0;
 		int y = 0;
 
@@ -133,7 +133,7 @@ public class MyRelativeLayout extends RelativeLayout {
 			tv.measure(w, h);
 			int tvh = tv.getMeasuredHeight();
 			int tvw = getMeasuredWidth(tv);
-
+			
 			RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
 					LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 			if (x + tvw > layout_width) {
@@ -172,10 +172,11 @@ public class MyRelativeLayout extends RelativeLayout {
 				RelativeLayout.LayoutParams lp2 = (RelativeLayout.LayoutParams) tView2.getLayoutParams();
 				lp2.leftMargin = lp2.leftMargin + leftOffset;
 				leftOffset = (j + 1) * 2 * padding;
+				
 				tView2.setPadding(
 						tView2.getPaddingLeft() + padding,
 						tView2.getPaddingTop(), 
-						tView2.getPaddingRight()+ padding, 
+						tView2.getPaddingRight()+padding, 
 						tView2.getPaddingBottom());
 				
 				addView(tView2);
@@ -191,7 +192,8 @@ public class MyRelativeLayout extends RelativeLayout {
 	}
 
 	public int getMeasuredWidth(View v) {
-		return v.getMeasuredWidth() + v.getPaddingLeft() + v.getPaddingRight();
+		//return v.getMeasuredWidth() + v.getPaddingLeft() + v.getPaddingRight();
+		return v.getMeasuredWidth() ;
 	}
 
 	interface OnMultipleTVItemClickListener {

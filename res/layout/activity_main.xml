@@ -4,15 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-    <com.example.multipletextview.MyRelativeLayout
-        xmlns:my="http://schemas.android.com/apk/res/com.example.multipetextview"
+    <com.dd544.bu.MultipleTextView
+        xmlns:my="http://schemas.android.com/apk/res/com.dd544.multipletextview"
         android:id="@+id/main_rl"
         android:layout_width="match_parent"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="1dp"
+        android:layout_marginRight="10dp"
     	android:layout_height="wrap_content"
     	my:textSize="12sp"
-    	my:textWordMargin="1dp"
+    	my:textWordMargin="10dp"
     	my:textLineMargin="10dp"
     	my:textColor="#ff0000"
     	my:textBackground="@drawable/testd"
