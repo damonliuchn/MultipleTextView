@@ -10,5 +10,5 @@ MultipleTextView 可以实现自动换行排列多个TextView，并且把上一�
 ------
 ##欢迎批评指正
 
-博客：http://www.dd544.com
+博客：http://blog.csdn.net/masonblog
 邮箱：MasonLiuChn@gmail.com
