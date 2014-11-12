@@ -3,7 +3,7 @@
     package="com.dd544.multipletextview"
     android:versionCode="1"
     android:versionName="1.0" >
-<!-- 1-->
+<!-- 2-->
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="19" />
