@@ -47,7 +47,7 @@ public class MultipleTextView extends RelativeLayout {
 
 		TypedArray array = context.obtainStyledAttributes(attrs,
 				R.styleable.MyView);
-		textColor = array.getColor(R.styleable.MyView_textColor, 0XFF00FF00); // 提供默认值，放置未指定
+		textColor = array.getColor(R.styleable.MyView_textColor, 0XFF00FF00); // 提供默认值，防止未指定
 		textSize = array.getDimension(R.styleable.MyView_textSize, 24);
 		textSize=px2sp(context,textSize);
 		wordMargin = array.getDimensionPixelSize(R.styleable.MyView_textWordMargin, 0);
