@@ -1,9 +1,33 @@
-/gen
-
-/bin
+/.idea
+/.gradle
+/local.properties
 /build
+/app/fabric.properties
+/*/build
+*.apk
+*.iml
 
-/proguard
+# Eclipse project files
+.classpath
+.project
+/.settings
 
-/project.properties
-/.gitignore
+# OSX files
+.DS_Store
+.DS_Store?
+
+# Windows thumbnail db
+ehthumbs.db
+Thumbs.db
+
+# OS-specific files
+._*
+.Spotlight-V100
+.Trashes
+
+# Log Files
+*.log
+
+#mybuild.gradle
+app/mybuild.gradle
+app/mybuildscript.gradle

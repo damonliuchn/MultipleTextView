@@ -1,0 +1,23 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <net.masonliu.multipletextview.library.MultipleTextViewGroup xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/main_rl"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+    	android:layout_height="wrap_content"
+        app:textSize="12sp"
+        app:textWordMargin="10dp"
+        app:textLineMargin="10dp"
+        app:textColor="#ff0000"
+        app:textBackground="@color/grey"
+        app:textPaddingLeft="10dp"
+        app:textPaddingRight="10dp"
+        app:textPaddingTop="10dp"
+        app:textPaddingBottom="10dp"
+    	/>
+</FrameLayout>
+

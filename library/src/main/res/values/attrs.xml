@@ -1,0 +1,19 @@
+<resources>
+
+    <declare-styleable name="MultipleTextViewGroup">
+        <attr name="textColor" format="color" />
+        <attr name="textSize" format="dimension" />
+        <attr name="textWordMargin" format="dimension" />
+        <attr name="textLineMargin" format="dimension" />
+        <attr name="textBackground" format="integer" />
+
+        <attr name="textPaddingLeft" format="dimension" />
+        <attr name="textPaddingRight" format="dimension" />
+        <attr name="textPaddingTop" format="dimension" />
+        <attr name="textPaddingBottom" format="dimension" />
+
+        <attr name="overspread" format="boolean" />
+        <attr name="columnNum" format="integer" />
+    </declare-styleable>
+
+</resources>
