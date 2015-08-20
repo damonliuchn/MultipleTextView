@@ -5,10 +5,10 @@
 
     <net.masonliu.multipletextview.library.MultipleTextViewGroup xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/main_rl"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-    	android:layout_height="wrap_content"
+        android:layout_height="wrap_content"
         app:textSize="12sp"
         app:textWordMargin="10dp"
         app:textLineMargin="10dp"
@@ -18,6 +18,8 @@
         app:textPaddingRight="10dp"
         app:textPaddingTop="10dp"
         app:textPaddingBottom="10dp"
-    	/>
+        app:columnNum="2"
+        app:overspread="false" />
+
 </FrameLayout>
 

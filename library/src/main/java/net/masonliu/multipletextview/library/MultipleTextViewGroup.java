@@ -6,7 +6,6 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
@@ -28,6 +27,8 @@ public class MultipleTextViewGroup extends RelativeLayout {
     private int textPaddingRight;
     private int textPaddingTop;
     private int textPaddingBottom;
+    private boolean overspread;
+    private int columnNum;
     private Drawable textBackground;
 
     private int layout_width;
@@ -36,7 +37,6 @@ public class MultipleTextViewGroup extends RelativeLayout {
 
     public MultipleTextViewGroup(Context context, AttributeSet attrs) {
         super(context, attrs);
-        // TODO Auto-generated constructor stub
         this.context = context;
 
         TypedArray array = context.obtainStyledAttributes(attrs,
@@ -51,6 +51,8 @@ public class MultipleTextViewGroup extends RelativeLayout {
         textPaddingRight = array.getDimensionPixelSize(R.styleable.MultipleTextViewGroup_textPaddingRight, 0);
         textPaddingTop = array.getDimensionPixelSize(R.styleable.MultipleTextViewGroup_textPaddingTop, 0);
         textPaddingBottom = array.getDimensionPixelSize(R.styleable.MultipleTextViewGroup_textPaddingBottom, 0);
+        overspread = array.getBoolean(R.styleable.MultipleTextViewGroup_overspread, false);
+        columnNum = array.getInteger(R.styleable.MultipleTextViewGroup_columnNum, 1000);
         array.recycle();
         //下边是获取系统属性
         int[] attrsArray = new int[]{android.R.attr.id, // 0
@@ -58,8 +60,6 @@ public class MultipleTextViewGroup extends RelativeLayout {
                 android.R.attr.layout_width, // 2
                 android.R.attr.layout_height, // 3
                 android.R.attr.layout_marginLeft, // 4
-                // 这个地方必须放到android.R.attr.layout_width的下边
-                // 不知道为什么
                 android.R.attr.layout_marginRight // 5
         };
         TypedArray ta = context.obtainStyledAttributes(attrs, attrsArray);
@@ -67,18 +67,13 @@ public class MultipleTextViewGroup extends RelativeLayout {
         try {
             layout_width = ta.getDimensionPixelSize(2, ViewGroup.LayoutParams.MATCH_PARENT);
         } catch (Exception e) {
-            // TODO: handle exception
             DisplayMetrics dm = getResources().getDisplayMetrics();
             layout_width = dm.widthPixels;
         }
         int marginRight = ta.getDimensionPixelSize(4, 0);
         int marginLeft = ta.getDimensionPixelSize(5, 0);
         layout_width = layout_width - marginRight - marginLeft;
-
-        Log.e("aa", "ddd_" + textSize);
-
         ta.recycle();
-
     }
 
     public OnMultipleTVItemClickListener getOnMultipleTVItemClickListener() {
@@ -95,8 +90,6 @@ public class MultipleTextViewGroup extends RelativeLayout {
             return;
         }
 
-
-        // 每一行拉伸
         int line = 0;
         Map<Integer, List<TextView>> lineMap = new HashMap<Integer, List<TextView>>();
         List<TextView> lineList = new ArrayList<TextView>();
@@ -118,7 +111,6 @@ public class MultipleTextViewGroup extends RelativeLayout {
             tv.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // TODO Auto-generated method stub
                     if (listener != null) {
                         listener.onMultipleTVItemClick(v, (Integer) v.getTag());
                     }
@@ -133,11 +125,10 @@ public class MultipleTextViewGroup extends RelativeLayout {
 
             RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
                     LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-            if (x + tvw > layout_width) {
+            if (x + tvw > layout_width || lineMap.get(line).size() >= columnNum) {
                 x = 0;
                 y = y + tvh + lineMargin;
 
-                // 拉伸处理
                 line++;
                 lineMap.put(line, new ArrayList<TextView>());
             }
@@ -145,30 +136,32 @@ public class MultipleTextViewGroup extends RelativeLayout {
             lp.topMargin = y;
             x = x + tvw + wordMargin;
             tv.setLayoutParams(lp);
-
-            // 拉伸处理
             lineMap.get(line).add(tv);
-
         }
-        // 每一行拉伸
+
         for (int i = 0; i <= line; i++) {
+            int padding = 0;
+            if (overspread) {
+                // 该行最后一个位置
+                int len = lineMap.get(i).size();
+                TextView tView = lineMap.get(i).get(len - 1);
 
-            // 该行最后一个位置
-            int len = lineMap.get(i).size();
-            TextView tView = lineMap.get(i).get(len - 1);
+                RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) tView.getLayoutParams();
+                int right = lp.leftMargin + getMeasuredWidth(tView);
+                int emptyWidth = layout_width - right;
+                padding = emptyWidth / (len * 2);
+            }
 
-            RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) tView.getLayoutParams();
-            int right = lp.leftMargin + getMeasuredWidth(tView);
-            int emptyWidth = layout_width - right;
-            int padding = emptyWidth / (len * 2);
 
             int leftOffset = 0;
             for (int j = 0; j < lineMap.get(i).size(); j++) {
                 TextView tView2 = lineMap.get(i).get(j);
 
-                RelativeLayout.LayoutParams lp2 = (RelativeLayout.LayoutParams) tView2.getLayoutParams();
-                lp2.leftMargin = lp2.leftMargin + leftOffset;
-                leftOffset = (j + 1) * 2 * padding;
+                if (overspread) {
+                    RelativeLayout.LayoutParams lp2 = (RelativeLayout.LayoutParams) tView2.getLayoutParams();
+                    lp2.leftMargin = lp2.leftMargin + leftOffset;
+                    leftOffset = (j + 1) * 2 * padding;
+                }
 
                 tView2.setPadding(
                         tView2.getPaddingLeft() + padding,
@@ -183,13 +176,11 @@ public class MultipleTextViewGroup extends RelativeLayout {
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        // TODO Auto-generated method stub
         super.dispatchDraw(canvas);
 
     }
 
     public int getMeasuredWidth(View v) {
-        //return v.getMeasuredWidth() + v.getPaddingLeft() + v.getPaddingRight();
         return v.getMeasuredWidth();
     }
 
