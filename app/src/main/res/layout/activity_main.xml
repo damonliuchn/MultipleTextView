@@ -13,7 +13,7 @@
         app:textWordMargin="10dp"
         app:textLineMargin="10dp"
         app:textColor="#ff0000"
-        app:textBackground="@color/grey"
+        app:textBackground="@drawable/shape_tag_grey_with_border"
         app:textPaddingLeft="10dp"
         app:textPaddingRight="10dp"
         app:textPaddingTop="10dp"

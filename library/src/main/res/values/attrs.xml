@@ -5,7 +5,7 @@
         <attr name="textSize" format="dimension" />
         <attr name="textWordMargin" format="dimension" />
         <attr name="textLineMargin" format="dimension" />
-        <attr name="textBackground" format="integer" />
+        <attr name="textBackground" format="reference" />
 
         <attr name="textPaddingLeft" format="dimension" />
         <attr name="textPaddingRight" format="dimension" />

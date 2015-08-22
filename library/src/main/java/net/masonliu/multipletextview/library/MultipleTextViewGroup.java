@@ -3,7 +3,6 @@ package net.masonliu.multipletextview.library;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -29,7 +28,7 @@ public class MultipleTextViewGroup extends RelativeLayout {
     private int textPaddingBottom;
     private boolean overspread;
     private int columnNum;
-    private Drawable textBackground;
+    private int textBackground;
 
     private int layout_width;
 
@@ -46,7 +45,8 @@ public class MultipleTextViewGroup extends RelativeLayout {
         textSize = px2sp(context, textSize);
         wordMargin = array.getDimensionPixelSize(R.styleable.MultipleTextViewGroup_textWordMargin, 0);
         lineMargin = array.getDimensionPixelSize(R.styleable.MultipleTextViewGroup_textLineMargin, 0);
-        textBackground = array.getDrawable(R.styleable.MultipleTextViewGroup_textBackground);
+        textBackground = array.getResourceId(R.styleable.MultipleTextViewGroup_textBackground, -1);
+        //array.getc
         textPaddingLeft = array.getDimensionPixelSize(R.styleable.MultipleTextViewGroup_textPaddingLeft, 0);
         textPaddingRight = array.getDimensionPixelSize(R.styleable.MultipleTextViewGroup_textPaddingRight, 0);
         textPaddingTop = array.getDimensionPixelSize(R.styleable.MultipleTextViewGroup_textPaddingTop, 0);
@@ -102,8 +102,8 @@ public class MultipleTextViewGroup extends RelativeLayout {
             TextView tv = new TextView(context);
             tv.setText(dataList.get(i));
             tv.setTextSize(textSize);
-            if (textBackground != null)
-                tv.setBackgroundDrawable(textBackground);
+            if (textBackground != -1)
+                tv.setBackgroundResource(textBackground);
 
             tv.setTextColor(textColor);
             tv.setPadding(textPaddingLeft, textPaddingTop, textPaddingRight, textPaddingBottom);
