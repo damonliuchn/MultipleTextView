@@ -38,6 +38,17 @@ MultipleTextView can automatically arrange a plurality of TextView .
         app:columnNum="2"
         app:overspread="false" />
 ```
+```java
+repositories {
+    maven {
+        url "https://jitpack.io"
+    }
+}
+
+dependencies {
+    compile 'com.github.MasonLiuChn:MultipleTextView:1.0.1'
+}
+```
 
 <img src="https://github.com/MasonLiuChn/MultipleTextView/raw/master/app/doc/3.png"  width="320"/>
 <img src="https://github.com/MasonLiuChn/MultipleTextView/raw/master/app/doc/2.png"  width="320" height="500"/>
