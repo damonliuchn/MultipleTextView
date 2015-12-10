@@ -46,13 +46,15 @@ repositories {
 }
 
 dependencies {
-    compile 'com.github.MasonLiuChn:MultipleTextView:1.0.1'
+    compile 'com.github.MasonLiuChn:MultipleTextView:1.0.2'
 }
 ```
 
-<img src="https://github.com/MasonLiuChn/MultipleTextView/raw/master/app/doc/3.png"  width="320"/>
 <img src="https://github.com/MasonLiuChn/MultipleTextView/raw/master/app/doc/2.png"  width="320" height="500"/>
 <img src="https://github.com/MasonLiuChn/MultipleTextView/raw/master/app/doc/1.png"  width="320" height="500"/>
+
+<img src="https://github.com/MasonLiuChn/MultipleTextView/raw/master/app/doc/4.png"  width="320" height="500"/>
+<img src="https://github.com/MasonLiuChn/MultipleTextView/raw/master/app/doc/3.png"  width="320"/>
 
 ------
 Blog:http://blog.csdn.net/masonblog

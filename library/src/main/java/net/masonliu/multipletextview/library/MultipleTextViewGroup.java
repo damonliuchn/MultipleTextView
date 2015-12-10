@@ -4,9 +4,9 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -31,6 +31,8 @@ public class MultipleTextViewGroup extends RelativeLayout {
     private int textBackground;
 
     private int layout_width;
+    private int marginRight;
+    private int marginLeft;
 
     private OnMultipleTVItemClickListener listener;
 
@@ -63,17 +65,16 @@ public class MultipleTextViewGroup extends RelativeLayout {
                 android.R.attr.layout_marginRight // 5
         };
         TypedArray ta = context.obtainStyledAttributes(attrs, attrsArray);
-
-        try {
-            layout_width = ta.getDimensionPixelSize(2, ViewGroup.LayoutParams.MATCH_PARENT);
-        } catch (Exception e) {
-            DisplayMetrics dm = getResources().getDisplayMetrics();
-            layout_width = dm.widthPixels;
-        }
-        int marginRight = ta.getDimensionPixelSize(4, 0);
-        int marginLeft = ta.getDimensionPixelSize(5, 0);
-        layout_width = layout_width - marginRight - marginLeft;
+        layout_width = ta.getLayoutDimension(2, ViewGroup.LayoutParams.MATCH_PARENT);
+        marginRight = ta.getDimensionPixelSize(4, 0);
+        marginLeft = ta.getDimensionPixelSize(5, 0);
+        validateMargin();
         ta.recycle();
+    }
+
+    public static int px2sp(Context context, float pxValue) {
+        final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
+        return (int) (pxValue / fontScale + 0.5f);
     }
 
     public OnMultipleTVItemClickListener getOnMultipleTVItemClickListener() {
@@ -85,7 +86,32 @@ public class MultipleTextViewGroup extends RelativeLayout {
         this.listener = listener;
     }
 
-    public void setTextViews(List<String> dataList) {
+    private void validateMargin() {
+        layout_width = layout_width - marginRight - marginLeft;
+    }
+
+    public void setTextViews(final List<String> dataList) {
+        if (layout_width >= 0) {
+            setTextViewsTrue(dataList);
+        } else {
+            ViewTreeObserver viewTreeObserver = getViewTreeObserver();
+            if (viewTreeObserver.isAlive()) {
+                viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() {
+                        getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                        layout_width = ((ViewGroup) getParent()).getWidth();
+                        validateMargin();
+                        setTextViewsTrue(dataList);
+                    }
+                });
+            }
+        }
+    }
+
+    private void setTextViewsTrue(List<String> dataList) {
+        ViewGroup parentView = (ViewGroup) getParent();
+        parentView.getWidth();
         if (dataList == null || dataList.size() == 0) {
             return;
         }
@@ -182,11 +208,6 @@ public class MultipleTextViewGroup extends RelativeLayout {
 
     public int getMeasuredWidth(View v) {
         return v.getMeasuredWidth();
-    }
-
-    public static int px2sp(Context context, float pxValue) {
-        final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
-        return (int) (pxValue / fontScale + 0.5f);
     }
 
     public interface OnMultipleTVItemClickListener {
